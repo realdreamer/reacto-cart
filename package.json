@@ -1,0 +1,45 @@
+{
+  "name": "reacto-cart",
+  "version": "0.0.1",
+  "description": "e-commerce application front-end developed using react",
+  "main": "index.js",
+  "scripts": {
+    "init": "yarn install && webpack-dev-server --open",
+    "dev": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realdreamer/reacto-cart.git"
+  },
+  "keywords": [
+    "react",
+    "e-commerce",
+    "cart",
+    "reacto-cart",
+    "react",
+    "e-commerce"
+  ],
+  "author": "MI RD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/realdreamer/reacto-cart/issues"
+  },
+  "homepage": "https://github.com/realdreamer/reacto-cart#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "flow-babel-webpack-plugin": "^1.1.0",
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
