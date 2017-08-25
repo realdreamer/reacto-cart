@@ -3,9 +3,14 @@
   "version": "0.0.1",
   "description": "e-commerce application front-end developed using react",
   "main": "index.js",
+  "bin": {
+    "cross-env": "./node_modules/cross-env/bin/cross-env.js",
+    "webpack": "./node_modules/webpack/bin/webpack.js",
+    "webpack-dev-server": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+  },
   "scripts": {
-    "init": "yarn install && webpack-dev-server --open",
-    "dev": "webpack-dev-server --open"
+    "init": "yarn install && webpack-dev-server",
+    "dev": "cross-env NODE_ENV=development webpack-dashboard -- webpack-dev-server --progress"
   },
   "repository": {
     "type": "git",
@@ -15,9 +20,7 @@
     "react",
     "e-commerce",
     "cart",
-    "reacto-cart",
-    "react",
-    "e-commerce"
+    "reacto-cart"
   ],
   "author": "MI RD",
   "license": "ISC",
@@ -26,20 +29,33 @@
   },
   "homepage": "https://github.com/realdreamer/reacto-cart#readme",
   "dependencies": {
+    "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.3.0",
     "flow-babel-webpack-plugin": "^1.1.0",
     "html-webpack-plugin": "^2.30.1",
+    "react-dev-utils": "^3.1.1",
     "webpack": "^3.5.5",
+    "webpack-dashboard": "^1.0.0-5",
     "webpack-dev-server": "^2.7.1"
   }
 }

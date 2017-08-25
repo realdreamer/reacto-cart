@@ -5,11 +5,12 @@
     "allowImportExportEverywhere": false,
     "codeFrame": false
   },
-  "extends": "react-app",
+  "extends": "react",
   "plugins": [
     "flowtype"
   ],
   "rules": {
+    "indent": ["error", 2],
     "react/sort-comp": [
       2,
       {
@@ -66,5 +67,9 @@
     "flowtype": {
       "onlyFilesWithFlowAnnotation": true
     }
+  },
+  "env": {
+    "browser": true,
+    "node": true
   }
 }

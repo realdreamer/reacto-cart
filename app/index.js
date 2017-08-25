@@ -6,11 +6,11 @@ type Props = {
   title: string
 };
 
-function App(props: Props) {
-  return <div>{props.title}</div>;
+function App (props: Props) {
+  return <h1>{props.title}</h1>;
 }
 
 ReactDOM.render(
-  <App title = {42} />,
+  <App title = {'Reacto-cart'} />,
   document.getElementById('app'),
 );
