@@ -7,9 +7,9 @@ const _configs = {
   // global: require(__dirname + '/config/global'),
 
   // config by enviroments
-  production: require(__dirname + '/config/webpack.prod.config'),
-  test: require(__dirname + '/config/webpack.test.config'),
-  development: require(__dirname + '/config/webpack.dev.config')
+  production: require(__dirname + '/config/webpack.config.prod'),
+  test: require(__dirname + '/config/webpack.config.test'),
+  development: require(__dirname + '/config/webpack.config.dev')
 };
 
 const _loadConfig = function () {

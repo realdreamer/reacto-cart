@@ -2,6 +2,7 @@
 'use strict';
 const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
@@ -15,14 +16,14 @@ module.exports = function (_path) {
     devtool: 'cheap-module-source-map',
     entry: './app/index.js',
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(_path, 'dist'),
       filename: 'index.bundle.js',
       publicPath: '/'
     },
     resolve: {
       modules: [
-        path.join(__dirname, 'app'),
-        'node_modules'
+        path.resolve(_path, 'app'),
+        'node_modules',
       ],
       extensions: ['.js', '.jsx', '.scss', '.css']
     },
@@ -41,6 +42,42 @@ module.exports = function (_path) {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
           loader: 'babel-loader'
+        },
+        {
+          test: /\.scss$/,
+          exclude: /(node_modules|bower_components)/,
+          use: [
+            {
+              loader: 'style-loader'
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+              },
+            },
+            {
+              loader: require.resolve('postcss-loader'),
+              options: {
+                ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+                plugins: () => [
+                  require('postcss-flexbugs-fixes'),
+                  autoprefixer({
+                    browsers: [
+                      '>1%',
+                      'last 4 versions',
+                      'Firefox ESR',
+                      'not ie < 9', // React doesn't support IE8 anyway
+                    ],
+                    flexbox: 'no-2009',
+                  }),
+                ],
+              },
+            },
+            {
+              loader: 'sass-loader'
+            },
+          ],
         }
       ]
     },

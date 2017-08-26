@@ -1,4 +1,6 @@
 [ignore]
+.*/build/.*
+.*/dist/.*
 
 [include]
 
@@ -7,3 +9,6 @@
 [lints]
 
 [options]
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/CSSFlowStub.js'
+
+  #https://stackoverflow.com/questions/36912675/flow-required-module-not-found-when-importing-a-css-file
