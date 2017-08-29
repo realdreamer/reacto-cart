@@ -1,0 +1,13 @@
+@import 'base/variables';
+@import 'base/reset';
+
+body {
+  background-color: $body-bg;
+  background-size: 100% auto;
+  box-sizing: border-box;
+  color: $white;
+  display: flex;
+  font-family: $font-family;
+  padding: $body-padding;
+  transition: all .3s ease;
+}

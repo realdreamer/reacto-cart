@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 // Scss
-import 'css/main.scss';
+import 'scss/main.scss';
 
 type Props = {
   title: string

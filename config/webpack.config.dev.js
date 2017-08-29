@@ -77,6 +77,9 @@ module.exports = function (_path) {
             {
               loader: 'sass-loader'
             },
+            {
+              loader: 'sasslint-loader',
+            },
           ],
         }
       ]

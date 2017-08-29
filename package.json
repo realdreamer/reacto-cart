@@ -10,7 +10,11 @@
   },
   "scripts": {
     "init": "yarn install && webpack-dev-server",
-    "dev": "cross-env NODE_ENV=development webpack-dashboard -- webpack-dev-server --progress"
+    "dev": "cross-env NODE_ENV=development webpack-dashboard -- webpack-dev-server --progress",
+    "lint": "eslint app/",
+    "sass-lint": "sass-lint -c ./.sass-lint.yml 'app/scss/**/*.scss' -v -q",
+    "validate": "npm ls",
+    "nsp-check": "nsp check"
   },
   "repository": {
     "type": "git",
@@ -56,14 +60,22 @@
     "flow-babel-webpack-plugin": "^1.1.0",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.5.3",
+    "nsp": "^2.7.0",
     "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-loader": "^2.0.6",
+    "precommit-hook": "^3.0.0",
     "react-dev-utils": "^3.1.1",
+    "sass-lint": "^1.11.1",
     "sass-loader": "^6.0.6",
     "sasslint-loader": "^0.0.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.5.5",
     "webpack-dashboard": "^1.0.0-5",
     "webpack-dev-server": "^2.7.1"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "sass-lint",
+    "nsp-check"
+  ]
 }
