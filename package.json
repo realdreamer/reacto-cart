@@ -13,6 +13,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dashboard -- webpack-dev-server --progress",
     "lint": "eslint app/",
     "sass-lint": "sass-lint -c ./.sass-lint.yml 'app/scss/**/*.scss' -v -q",
+    "test": "jest --coverage",
     "validate": "npm ls",
     "nsp-check": "nsp check"
   },
@@ -41,6 +42,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^21.0.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-env": "^1.6.0",
@@ -48,6 +50,7 @@
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.5",
+    "enzyme": "^2.9.1",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-react": "^1.1.7",
@@ -59,23 +62,51 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "flow-babel-webpack-plugin": "^1.1.0",
     "html-webpack-plugin": "^2.30.1",
+    "jest": "^21.0.1",
     "node-sass": "^4.5.3",
     "nsp": "^2.7.0",
+    "object-assign": "^4.1.1",
     "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-loader": "^2.0.6",
     "precommit-hook": "^3.0.0",
+    "promise": "^8.0.1",
     "react-dev-utils": "^3.1.1",
+    "react-test-renderer": "^15.6.1",
     "sass-lint": "^1.11.1",
     "sass-loader": "^6.0.6",
     "sasslint-loader": "^0.0.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.5.5",
     "webpack-dashboard": "^1.0.0-5",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.7.1",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "testMatch": [
+      "<rootDir>/__tests__/**/*.js?(x)",
+      "<rootDir>/app/?(*.)(spec|test).js?(x)"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    }
   },
   "pre-commit": [
+    "nsp-check",
     "lint",
     "sass-lint",
-    "nsp-check"
+    "jest"
   ]
 }
