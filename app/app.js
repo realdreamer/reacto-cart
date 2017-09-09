@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 
+import '../app/scss/app.scss';
+
 type Props = {
   title: string
 };
