@@ -22,10 +22,11 @@ const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const _paths = require('./paths');
 
 let pathsToClean = [
-  _paths.appBuild
+  'build'
 ];
 
 let cleanOptions = {
+  root: _paths.appRootPath,
   verbose: true,
   dry: false
 };
@@ -111,6 +112,7 @@ module.exports = function () {
               loader: require.resolve('css-loader'),
               options: {
                 importLoaders: 1,
+                minimize: true,
                 sourceMap: true
               }
             }, {
@@ -162,6 +164,20 @@ module.exports = function () {
           minifyCSS: true,
           minifyURLs: true
         }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          // Disabled because of an issue with Uglify breaking seemingly valid code:
+          // https://github.com/facebookincubator/create-react-app/issues/2376
+          // Pending further investigation:
+          // https://github.com/mishoo/UglifyJS2/issues/2011
+          comparisons: false,
+        },
+        output: {
+          comments: false,
+        },
+        sourceMap: true,
       }),
       extractSass,
       new CleanWebpackPlugin(pathsToClean, cleanOptions)
