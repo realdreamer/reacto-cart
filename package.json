@@ -11,6 +11,7 @@
   "scripts": {
     "init": "yarn install && webpack-dev-server",
     "dev": "cross-env NODE_ENV=development webpack-dashboard -- webpack-dev-server --progress",
+    "build": "cross-env NODE_ENV=production webpack",
     "lint": "eslint app/",
     "sass-lint": "sass-lint -c ./.sass-lint.yml 'app/scss/**/*.scss' -v -q",
     "test": "jest --coverage",
@@ -48,6 +49,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.5",
     "enzyme": "^2.9.1",

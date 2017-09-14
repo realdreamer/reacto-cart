@@ -20,7 +20,7 @@ module.exports = function (_path) {
     entry: _paths.appIndexJs,
     output: {
       path: _paths.appBuild,
-      filename: 'index.bundle.js',
+      filename: 'index.bundle.js?[hash:8]',
       publicPath: '/'
     },
     resolve: {
@@ -93,7 +93,8 @@ module.exports = function (_path) {
             {
               loader: require.resolve('css-loader'),
               options: {
-                importLoaders: 1
+                importLoaders: 1,
+                sourceMap: true
               }
             },
             {
@@ -111,11 +112,15 @@ module.exports = function (_path) {
                     ],
                     flexbox: 'no-2009'
                   })
-                ]
+                ],
+                sourceMap: true
               }
             },
             {
-              loader: require.resolve('sass-loader')
+              loader: require.resolve('sass-loader'),
+              options: {
+                sourceMap: true
+              }
             },
             {
               loader: require.resolve('sasslint-loader')
@@ -139,6 +144,10 @@ module.exports = function (_path) {
       hot: true
     },
     plugins: [
+      // new webpack.DefinePlugin({
+      //   "process.env.PRODUCTION": JSON.stringify(PRODUCTION),
+      //   "proccess.env.DEVELOPMENT": JSON.stringify(DEVELOPMENT),
+      // }),
       new HtmlWebpackPlugin({
         template: './app/index.html'
       }),
