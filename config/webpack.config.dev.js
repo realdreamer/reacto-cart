@@ -1,14 +1,25 @@
 // Will move the default local dev configs here..
 'use strict';
-const path = require('path');
+// const path = require('path');
 const _paths = require('./paths');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-const WebpackDevServer = require('webpack-dev-server');
+// const WebpackDevServer = require('webpack-dev-server');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 const WebpackDashboardPlugin = require('webpack-dashboard/plugin');
 const EslintFormatter = require('react-dev-utils/eslintFormatter');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const pathsToClean = [
+  'build'
+];
+
+const cleanOptions = {
+  root: _paths.appRootPath,
+  verbose: true,
+  dry: false
+};
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 
@@ -153,7 +164,8 @@ module.exports = function (_path) {
       }),
       new FlowBabelWebpackPlugin(),
       new WebpackDashboardPlugin(),
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new CleanWebpackPlugin(pathsToClean, cleanOptions)
     ]
   };
 };

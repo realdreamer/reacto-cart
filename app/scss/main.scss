@@ -9,5 +9,5 @@ body {
   display: flex;
   font-family: $font-family;
   padding: $body-padding;
-  transition: all .3s ease;
+  transition: background-color .3s, opacity .3s ease;
 }

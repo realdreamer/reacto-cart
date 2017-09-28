@@ -8,7 +8,6 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
-const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -16,7 +15,7 @@ const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 const EslintFormatter = require('react-dev-utils/eslintFormatter');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+// const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 
 const _paths = require('./paths');
@@ -31,7 +30,7 @@ let cleanOptions = {
   dry: false
 };
 
-const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+// const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([_paths.appIndexHtml, _paths.appIndexJs])) {
@@ -50,7 +49,7 @@ module.exports = function () {
     entry: [require.resolve('./polyfills.js'), _paths.appIndexJs],
     output: {
       path: _paths.appBuild,
-      filename: 'static/js/[name].[chunkhash:8].js',
+      filename: 'static/js/[name].[chunkhash].js',
       publicPath: '/'
     },
     resolve: {
@@ -172,14 +171,15 @@ module.exports = function () {
           // https://github.com/facebookincubator/create-react-app/issues/2376
           // Pending further investigation:
           // https://github.com/mishoo/UglifyJS2/issues/2011
-          comparisons: false,
+          comparisons: false
         },
         output: {
-          comments: false,
+          comments: false
         },
-        sourceMap: true,
+        sourceMap: true
       }),
       extractSass,
+      new FlowBabelWebpackPlugin(),
       new CleanWebpackPlugin(pathsToClean, cleanOptions)
     ]
   };
